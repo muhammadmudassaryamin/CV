@@ -1,211 +1,273 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cybersecurity Course</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Header styling */
-    header {
-      background: linear-gradient(135deg, #007bff, #6c63ff);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    /* Main content styling */
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
-    }
-
-    section {
-      margin-bottom: 3rem;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      border-bottom: 3px solid #007bff;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Styling the lists for videos, lectures, posts */
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s;
-    }
-
-    li:hover {
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    a {
-      color: #007bff;
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    p {
-      margin: 0.5rem 0 0;
-      font-size: 1rem;
-      color: #555;
-    }
-
-    /* Footer styling */
-    footer {
-      background-color: #007bff;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-
-    footer p {
-      margin: 0;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      li {
-        padding: 0.8rem;
-      }
-
-      a {
-        font-size: 1.1rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Mudassar Yamin - CV</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7FAFC;
+            color: #4A5568;
+            margin: 0;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #2C3E50;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .sidebar a {
+            color: #CBD5E0;
+            text-decoration: none;
+            display: block;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+        .sidebar a:hover {
+            color: #38B2AC;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 40px;
+            max-width: 900px;
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #2D3748;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #38B2AC;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        a {
+            color: #38B2AC;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #2C7A7B;
+            text-decoration: underline;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        #instagram-feed {
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 10px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #EDF2F7;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+            }
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Cybersecurity Course</h1>
-  </header>
+    <div class="sidebar">
+        <h3 class="text-xl font-bold mb-4 text-white">Navigation</h3>
+        <a href="#summary">Professional Summary</a>
+        <a href="#experience">Work Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#skills">Skills</a>
+        <a href="#publications">Publications</a>
+        <a href="#lectures">Lectures & Presentations</a>
+        <a href="#awards">Awards</a>
+        <a href="#languages">Languages</a>
+        <a href="#hobbies">Hobbies & Travel</a>
+    </div>
+    <div class="content">
+        <header class="section">
+            <h1>Muhammad Mudassar Yamin</h1>
+            <div class="contact-info">
+                <p>Email: muhammad.m.yamin@ntnu.no</p>
+                <p>Location: Gjøvik, Norway</p>
+                <p>Google Scholar: <a href="https://scholar.google.com/citations?user=Do_xVQMAAAAJ&hl=en">Profile</a></p>
+            </div>
+        </header>
 
-  <main>
-    <!-- Course Description Section -->
-    <section id="course-description">
-      <p>This course is designed to take you from beginner to expert in the field of cybersecurity. Throughout the course, you will:
-      </p>
-      <ul>
-        <li>Watch engaging video content on foundational and advanced cybersecurity topics.</li>
-        <li>Access in-depth lecture materials covering a wide range of security disciplines.</li>
-        <li>Read detailed posts on concepts like cryptography, network security, and ethical hacking.</li>
-      </ul>
-      <p>At the end of the course, you'll have the skills needed to defend and secure real-world systems and networks from threats. Additionally, you'll have opportunities to test your skills on an interactive CTF platform where you can solve practical security challenges.</p>
-    </section>
+        <section class="section" id="summary">
+            <h2>Professional Summary</h2>
+            <p>Associate Professor at NTNU with expertise in system security, penetration testing, and cyber ranges. Experienced Information Security consultant with multiple certifications and a Ph.D. in Information and Communication Technology.</p>
+        </section>
 
-    <!-- YouTube Videos Section -->
-    <section id="youtube-videos">
-      <h2>YouTube Videos</h2>
-      <ul>
-        <li>
-          <a href="https://www.youtube.com/watch?v=video1" target="_blank">Introduction to Cybersecurity</a>
-          <p>Description: An overview of basic cybersecurity concepts and threats.</p>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/watch?v=video2" target="_blank">Advanced Network Security</a>
-          <p>Description: Dive deeper into securing networks and preventing attacks.</p>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/watch?v=video3" target="_blank">Ethical Hacking Techniques</a>
-          <p>Description: Explore ethical hacking practices to identify and mitigate vulnerabilities.</p>
-        </li>
-      </ul>
-    </section>
+        <section class="section" id="experience">
+            <h2>Work Experience</h2>
+            <h3>Associate Professor</h3>
+            <p>Department of Information and Communication Technology, NTNU</p>
+            <p>2023 - Present</p>
+            <ul class="list-disc ml-5">
+                <li>Conduct research in system security, penetration testing, security assessment, and intrusion detection</li>
+                <li>Teach courses in cybersecurity</li>
+                <li>Supervise students</li>
+            </ul>
+			<h3>Post doctoral researcher</h3>
+            <p>NTNU</p>
+            <p>2022 - 2023</p>
+            <p>Project: "AI based cyber range scenarios managemnet and training"</p>
+            <h3>Ph.D. Candidate</h3>
+            <p>NTNU</p>
+            <p>2018 - 2022</p>
+            <p>Thesis: "Modelling and Analyzing Attack-Defense Scenarios for Cyber-Ranges"</p>
+            <h3>Information Security Consultant</h3>
+            <p>Prior to 2018</p>
+            <ul class="list-disc ml-5">
+                <li>Served multiple government and private clients</li>
+                <li>Performed secuirty assessment of major financial institutions and critical infrastructure</li>
+            </ul>
+        </section>
 
-    <!-- Lectures Section -->
-    <section id="lectures">
-      <h2>Lecture Materials</h2>
-      <ul>
-        <li>
-          <a href="/lectures/lecture1.pdf" target="_blank">Lecture 1: Cybersecurity Fundamentals</a>
-          <p>Description: Introduction to fundamental principles and practices in cybersecurity.</p>
-        </li>
-        <li>
-          <a href="/lectures/lecture2.pdf" target="_blank">Lecture 2: Cryptography Basics</a>
-          <p>Description: Overview of cryptographic methods and their application in security.</p>
-        </li>
-        <li>
-          <a href="/lectures/lecture3.pdf" target="_blank">Lecture 3: Security in the Cloud</a>
-          <p>Description: Understanding the unique challenges of securing cloud environments.</p>
-        </li>
-      </ul>
-    </section>
+        <section class="section" id="education">
+            <h2>Education</h2>
+            <p>Ph.D. in Information and Communication Technology, NTNU, 2022</p>
+        </section>
 
-    <!-- Posts Section -->
-    <section id="posts">
-      <h2>Posts & Concepts</h2>
-      <ul>
-        <li>
-          <a href="/posts/post1.html">Understanding Firewalls</a>
-          <p>Description: Learn how firewalls protect networks from unauthorized access.</p>
-        </li>
-        <li>
-          <a href="/posts/post2.html">Encryption: Why It Matters</a>
-          <p>Description: The importance of encryption in data security and privacy.</p>
-        </li>
-        <li>
-          <a href="/posts/post3.html">Threat Modeling for Security</a>
-          <p>Description: How to identify potential threats and plan defenses effectively.</p>
-        </li>
-      </ul>
-    </section>
+        <section class="section" id="certifications">
+            <h2>Certifications</h2>
+            <ul class="list-disc ml-5">
+                <li>OSCE (Offensive Security Certified Expert)</li>
+                <li>OSCP (Offensive Security Certified Professional)</li>
+                <li>LPT-MASTER (Licensed Penetration Tester Master)</li>
+                <li>CEH (Certified Ethical Hacker)</li>
+                <li>CHFI (Computer Hacking Forensic Investigator)</li>
+                <li>CPTE (Certified Penetration Testing Engineer)</li>
+                <li>CISSO (Certified Information Systems Security Officer)</li>
+                <li>CBP (Certified Blockchain Professional)</li>
+            </ul>
+        </section>
 
-    <!-- CTF Section -->
-    <section id="ctf">
-      <h2>Practice Your Skills: Capture The Flag (CTF)</h2>
-      <p>Put your cybersecurity knowledge to the test in a practical environment. Head over to our CTF platform where you'll face real-world challenges, from beginner to expert level.</p>
-      <a href="https://ctfplatform.com" target="_blank" style="font-weight: bold; font-size: 1.2rem; color: #007bff;">Start Practicing on the CTF Platform &rarr;</a>
-    </section>
-  </main>
+        <section class="section" id="skills">
+            <h2>Skills</h2>
+            <ul class="list-disc ml-5">
+                <li>System security</li>
+                <li>Penetration testing</li>
+                <li>Security assessment</li>
+                <li>Intrusion detection</li>
+                <li>Cyber ranges</li>
+                <li>Research and development</li>
+                <li>Teaching and supervision</li>
+            </ul>
+        </section>
 
-  <footer>
-    <p>&copy; 2024 Cybersecurity Course. All rights reserved.</p>
-  </footer>
+        <section class="section" id="publications">
+            <h2>Selected Publications</h2>
+            <ul class="list-disc ml-5">
+                <li>Yamin, M. M., Katt, B., & Gkioulos, V. (2020). Cyber ranges and security testbeds: Scenarios, functions, tools and architecture. <i>Computers & Security</i>, 88, 101636.</li>
+                <li>Yamin, M. M., Ullah, M., Ullah, H., & Katt, B. (2021). Weaponized AI for cyber attacks. <i>Journal of Information Security and Applications</i>, 57, 102722.</li>
+                <li>Yamin, M. M., Katt, B., & Nowostawski, M. (2021). Serious games as a tool to model attack and defense scenarios for cyber-security exercises. <i>Computers & Security</i>, 110, 102450.</li>
+            </ul>
+        </section>
+
+        <section class="section" id="lectures">
+            <h2>Lectures and Presentations</h2>
+            <ul class="list-disc ml-5">
+                <li><a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2994131">Ph.D. Thesis: Modelling and Analyzing Attack-Defense Scenarios for Cyber-Ranges</a></li>
+                <li><a href="https://www.slideshare.net/DefCamp/implementation-of-information-security-techniques-on-modern-android-based-kiosk-atmremittance-machines">Implementation of information security techniques on modern android based Kiosk ATM/remittance machines (SlideShare)</a></li>
+            </ul>
+        </section>
+
+        <section class="section" id="awards">
+            <h2>Awards</h2>
+            <p>Innovation medal from Interpol for developing smart city policing concepts</p>
+        </section>
+
+        <section class="section" id="languages">
+            <h2>Languages</h2>
+            <p>English</p>
+        </section>
+
+        <section class="section" id="hobbies">
+            <h2>Hobbies and Travel</h2>
+            <div id="instagram-feed" class="text-center text-gray-500"><!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+			<script src="https://static.elfsight.com/platform/platform.js" async></script>
+			<div class="elfsight-app-3092489e-d6bc-4677-8d08-dc3845bd6433" data-elfsight-app-lazy></div></div>
+        </section>
+    </div>
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
