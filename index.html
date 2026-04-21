@@ -6,9 +6,6 @@
     <title>Muhammad Mudassar Yamin - CV</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Embedded Tailwind CSS (minified subset for used classes) */
-        .fixed{position:fixed}.top-0{top:0}.left-0{left:0}.right-0{right:0}.z-1000{z-index:1000}.z-1100{z-index:1100}.m-0{margin:0}.mb-4{margin-bottom:1rem}.mx-0{margin-left:0;margin-right:0}.ml-5{margin-left:1.25rem}.mr-4{margin-right:1rem}.flex{display:flex}.items-center{align-items:center}.justify-center{justify-content:center}.h-full{height:100%}.w-24{width:6rem}.w-full{width:100%}.h-64{height:16rem}.max-w-5xl{max-width:80rem}.cursor-pointer{cursor:pointer}.list-disc{list-style-type:disc}.overflow-y-auto{overflow-y:auto}.border{border-width:1px}.border-0{border-width:0}.border-gray-200{border-color:#E2E8F0}.rounded-lg{border-radius:0.5rem}.bg-white{background-color:#fff}.bg-gray-100{background-color:#F7FAFC}.bg-teal-500{background-color:#38B2AC}.bg-gray-800{background-color:#2D3748}.bg-gray-900{background-color:#1A202C}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-0{padding-left:0;padding-right:0}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.text-center{text-align:center}.font-inter{font-family:'Inter',sans-serif}.font-poppins{font-family:'Poppins',sans-serif}.text-base{font-size:1rem}.text-lg{font-size:1.125rem}.text-xl{font-size:1.25rem}.font-bold{font-weight:700}.text-white{color:#fff}.text-gray-500{color:#6B7280}.text-gray-600{color:#4A5568}.text-gray-200{color:#E2E8F0}.text-teal-500{color:#38B2AC}.text-teal-700{color:#2C7A7B}.no-underline{text-decoration:none}.shadow{box-shadow:0 4px 6px rgba(0,0,0,0.1)}.transition{transition-property:all;transition-duration:300ms}.transform{transform:translate(0,0)}.hover\:translate-y-1:hover{transform:translateY(-0.25rem)}.hover\:shadow-lg:hover{box-shadow:0 10px 15px rgba(0,0,0,0.1)}.hover\:text-teal-700:hover{color:#2C7A7B}.hover\:underline:hover{text-decoration:underline}.hover\:bg-gray-50:hover{background-color:#F9FAFB}.hover\:bg-gray-700:hover{background-color:#374151}.relative{position:relative}.inline-flex{display:inline-flex}.gap-2{gap:0.5rem}.rounded-full{border-radius:9999px}.h-32{height:8rem}.w-32{width:8rem}.object-cover{object-fit:cover}.grid{display:grid}.gap-4{gap:1rem}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:1024px){.lg\:w-48{width:12rem}.lg\:ml-52{margin-left:13rem}.lg\:p-4{padding:1rem}.lg\:w-24{width:6rem}.lg\:h-24{height:6rem}}@media (max-width:768px){.md\:ml-0{margin-left:0}.md\:p-2{padding:0.5rem}.md\:w-full{width:100%}.md\:w-20{width:5rem}.md\:h-20{height:5rem}}
-        /* Custom Styles */
         :root {
             --primary: #38B2AC;
             --primary-dark: #2C7A7B;
@@ -23,6 +20,7 @@
             --bg-dark: #2D3748;
             --text-dark: #CBD5E0;
         }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-light);
@@ -44,20 +42,16 @@
             transition: transform 0.3s ease-in-out;
             z-index: 1000;
         }
-        .sidebar.hidden {
-            transform: translateX(-100%);
-        }
+        .sidebar.hidden { transform: translateX(-100%); }
         .sidebar a {
             color: #CBD5E0;
             text-decoration: none;
             display: block;
             padding: 0.75rem 0;
             transition: color 0.3s, transform 0.2s;
+            font-size: 0.9rem;
         }
-        .sidebar a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
+        .sidebar a:hover { color: var(--primary); transform: translateX(5px); }
         .content {
             margin-left: 220px;
             padding: 2rem;
@@ -83,15 +77,9 @@
             margin: 5px 0;
             transition: all 0.3s ease-in-out;
         }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
         .theme-toggle {
             position: fixed;
             top: 1rem;
@@ -102,63 +90,166 @@
             background: var(--primary);
             border-radius: 50%;
         }
-        .theme-toggle svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
-        h1, h2, h3 {
-            font-family: 'Poppins', sans-serif;
-            color: #2D3748;
-        }
-        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 {
-            color: var(--text-dark);
-        }
-        h1 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            color: var(--primary);
-        }
-        h2 {
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
-        }
-        h3 {
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
-        }
-        p, li {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-        }
+        .theme-toggle svg { width: 24px; height: 24px; fill: white; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; color: #2D3748; }
+        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: var(--text-dark); }
+        h1 { font-size: clamp(2rem, 5vw, 2.5rem); color: var(--primary); }
+        h2 { font-size: clamp(1.5rem, 4vw, 1.8rem); }
+        h3 { font-size: clamp(1.2rem, 3vw, 1.4rem); }
+        p, li { font-size: clamp(0.9rem, 2.5vw, 1rem); }
         .section {
             background: white;
             padding: clamp(1rem, 3vw, 1.5rem);
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 1.5rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         [data-theme="dark"] .section {
             background: var(--bg-dark);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
         .section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        a { color: var(--primary); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--primary-dark); text-decoration: underline; }
+        .contact-info p { margin: 0.5rem 0; }
+        .social-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .social-links svg { width: 1.25rem; height: 1.25rem; fill: var(--primary); transition: fill 0.3s; vertical-align: middle; }
+        .social-links a { display: inline-flex; align-items: center; gap: 4px; }
+        .social-links a:hover svg { fill: var(--primary-dark); }
+        .profile-pic {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 8rem;
+            height: 8rem;
+            margin-right: 1rem;
         }
-        a {
+        .header-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .stat-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .badge {
+            background: var(--primary);
+            color: white;
+            font-size: 0.78rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+        [data-theme="dark"] .badge { background: var(--primary-dark); }
+        /* Teaching section */
+        .teaching-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .tab-btn {
+            padding: 0.4rem 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 9999px;
+            background: transparent;
             color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s;
         }
-        a:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: white;
         }
-        .contact-info p {
-            margin: 0.5rem 0;
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .course-card {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 0.75rem;
+            transition: box-shadow 0.2s;
         }
+        [data-theme="dark"] .course-card { background: #1A202C; }
+        .course-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+        .course-code { font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .course-title { font-weight: 600; margin: 0.1rem 0; font-size: 1rem; }
+        .course-meta { font-size: 0.82rem; color: #888; }
+        .thesis-list { list-style: none; padding: 0; margin: 0; }
+        .thesis-item {
+            border-bottom: 1px solid #E2E8F0;
+            padding: 0.75rem 0;
+        }
+        [data-theme="dark"] .thesis-item { border-color: #4A5568; }
+        .thesis-item:last-child { border-bottom: none; }
+        .thesis-title { font-weight: 600; margin-bottom: 0.2rem; }
+        .thesis-meta { font-size: 0.82rem; color: #888; display: flex; gap: 1rem; flex-wrap: wrap; }
+        .thesis-role {
+            font-size: 0.72rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .role-main { background: #EBF8FF; color: #2B6CB0; }
+        .role-co { background: #E6FFFA; color: #276749; }
+        [data-theme="dark"] .role-main { background: #2B6CB055; color: #90CDF4; }
+        [data-theme="dark"] .role-co { background: #27674955; color: #9AE6B4; }
+        .thesis-loader { text-align: center; padding: 2rem; color: #888; font-size: 0.9rem; }
+        .thesis-loader .spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #E2E8F0;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 0.5rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .nva-link-banner {
+            background: linear-gradient(135deg, #E6FFFA, #EBF8FF);
+            border: 1px solid #B2F5EA;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        [data-theme="dark"] .nva-link-banner { background: #1A3535; border-color: #2C7A7B; }
+        /* Publications */
+        .pub-year-group { margin-bottom: 1.5rem; }
+        .pub-year-label {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .pub-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        [data-theme="dark"] .pub-item { border-color: #4A5568; }
+        .pub-item:last-child { border-bottom: none; }
+        /* News cards */
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        [data-theme="dark"] .news-card { background: var(--bg-dark); }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .news-card iframe { width: 100%; border: 0; border-radius: 8px; height: 16rem; }
+        .news-date { font-size: 0.8rem; color: #888; margin-bottom: 0.4rem; }
+        .news-title { font-size: 1rem; font-weight: 600; color: #4A5568; margin-bottom: 0.5rem; }
+        [data-theme="dark"] .news-title { color: var(--text-dark); }
+        /* Instagram */
         #instagram-feed {
             border: 1px solid #E2E8F0;
             border-radius: 8px;
@@ -169,192 +260,134 @@
             justify-content: center;
             background: #EDF2F7;
         }
-        [data-theme="dark"] #instagram-feed {
-            border-color: #4A5568;
-            background: #2D3748;
-        }
-        .profile-pic {
-            border-radius: 50%;
-            object-fit: cover;
-            width: 8rem;
-            height: 8rem;
-            margin-right: 1rem;
-        }
-        .social-links svg {
-            width: 1.25rem;
-            height: 1.25rem;
-            fill: var(--primary);
-            transition: fill 0.3s;
-        }
-        .social-links a:hover svg {
-            fill: var(--primary-dark);
-        }
-        .news-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        [data-theme="dark"] .news-card {
-            background: var(--bg-dark);
-        }
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        .news-card iframe {
-            width: 100%;
-            border: 0;
-            border-radius: 8px;
-        }
+        [data-theme="dark"] #instagram-feed { border-color: #4A5568; background: #2D3748; }
+        .list-disc { list-style-type: disc; padding-left: 1.25rem; }
+        /* Responsive */
         @media (max-width: 1024px) {
-            .sidebar {
-                width: 180px;
-            }
-            .content {
-                margin-left: 200px;
-                padding: 1.5rem;
-            }
-            .profile-pic {
-                width: 6rem;
-                height: 6rem;
-            }
+            .sidebar { width: 180px; }
+            .content { margin-left: 200px; padding: 1.5rem; }
+            .profile-pic { width: 6rem; height: 6rem; }
         }
         @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                transform: translateX(-100%);
-            }
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            .content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-            .hamburger {
-                display: block;
-            }
-            .profile-pic {
-                width: 5rem;
-                height: 5rem;
-            }
-        }
-        @media (max-width: 480px) {
-            h1 {
-                font-size: clamp(1.8rem, 4.5vw, 2rem);
-            }
-            h2 {
-                font-size: clamp(1.3rem, 3.5vw, 1.5rem);
-            }
-            h3 {
-                font-size: clamp(1rem, 2.5vw, 1.2rem);
-            }
-            .section {
-                padding: 0.75rem;
-            }
-            #instagram-feed {
-                min-height: 150px;
-            }
-            .profile-pic {
-                width: 5rem;
-                height: 5rem;
-            }
+            .sidebar { width: 100%; transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .content { margin-left: 0; padding: 1rem; }
+            .hamburger { display: block; }
+            .profile-pic { width: 5rem; height: 5rem; }
+            .news-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="hamburger" onclick="toggleSidebar()" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
     <div class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-        <svg viewBox="0 0 24 24">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
     </div>
+
     <div class="sidebar" role="navigation" aria-label="Main navigation">
-        <h3 class="text-xl font-bold mb-4 text-white">Navigation</h3>
-        <a href="#summary" aria-label="Go to Professional Summary">Professional Summary</a>
-        <a href="#experience" aria-label="Go to Work Experience">Work Experience</a>
-        <a href="#education" aria-label="Go to Education">Education</a>
-        <a href="#certifications" aria-label="Go to Certifications">Certifications</a>
-        <a href="#skills" aria-label="Go to Skills">Skills</a>
-        <a href="#publications" aria-label="Go to Publications">Publications</a>
-        <a href="#lectures" aria-label="Go to Lectures and Presentations">Lectures & Presentations</a>
-        <a href="#awards" aria-label="Go to Awards">Awards</a>
-        <a href="#languages" aria-label="Go to Languages">Languages</a>
-        <a href="#news" aria-label="Go to News">News</a>
-        <a href="#hobbies" aria-label="Go to Hobbies and Travel">Hobbies & Travel</a>
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:white;">Navigation</h3>
+        <a href="#summary">Professional Summary</a>
+        <a href="#experience">Work Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#skills">Skills</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#publications">Publications</a>
+        <a href="#lectures">Lectures &amp; Presentations</a>
+        <a href="#awards">Awards</a>
+        <a href="#languages">Languages</a>
+        <a href="#news">News</a>
+        <a href="#hobbies">Hobbies &amp; Travel</a>
     </div>
+
     <div class="content">
+
+        <!-- HEADER -->
         <header class="section" id="header">
-            <div class="flex items-center">
-                <img src="https://cache.sessionize.com/image/51f3-400o400o2-GM2xjTjTgYp1kU5NvtKJts.png" alt="Muhammad Mudassar Yamin Profile Picture" class="profile-pic">
-                <h1>Muhammad Mudassar Yamin</h1>
-            </div>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:muhammad.m.yamin@ntnu.no" aria-label="Email Muhammad Mudassar Yamin">muhammad.m.yamin@ntnu.no</a></p>
-                <p>Location: Gjøvik, Norway</p>
-                <div class="social-links flex gap-2">
-                    <a href="https://scholar.google.com/citations?user=Do_xVQMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="View Google Scholar Profile">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M5.81 8.77L4 17h4l1.81-8.23L7.97 7.64 5.81 8.77zm10.69 2.46L14.69 17h4l1.81-8.23-1.81-1.13-1.69 2.59zM12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path>
-                        </svg>
-                        Google Scholar
-                    </a>
-                    <a href="https://www.linkedin.com/in/mudassaryamin/" target="_blank" rel="noopener" aria-label="View LinkedIn Profile">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
-                        </svg>
-                        LinkedIn
-                    </a>
+            <div class="header-inner">
+                <img src="https://cache.sessionize.com/image/51f3-400o400o2-GM2xjTjTgYp1kU5NvtKJts.png"
+                     alt="Muhammad Mudassar Yamin Profile Picture" class="profile-pic">
+                <div>
+                    <h1>Muhammad Mudassar Yamin</h1>
+                    <div class="contact-info">
+                        <p>📧 <a href="mailto:muhammad.m.yamin@ntnu.no">muhammad.m.yamin@ntnu.no</a></p>
+                        <p>📍 Gjøvik, Norway &nbsp;·&nbsp; Associate Professor, NTNU</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://scholar.google.com/citations?user=Do_xVQMAAAAJ&hl=en" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24"><path d="M5.81 8.77L4 17h4l1.81-8.23L7.97 7.64 5.81 8.77zm10.69 2.46L14.69 17h4l1.81-8.23-1.81-1.13-1.69 2.59zM12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                            Google Scholar
+                        </a>
+                        <a href="https://www.linkedin.com/in/mudassaryamin/" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://nva.sikt.no/research-profile/997884" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg>
+                            NVA Profile
+                        </a>
+                    </div>
+                    <div class="stat-badges">
+                        <span class="badge">70+ Publications</span>
+                        <span class="badge">1900+ Citations</span>
+                        <span class="badge">DEF CON Speaker</span>
+                        <span class="badge">Black Hat Speaker</span>
+                        <span class="badge">INTERPOL Medal</span>
+                    </div>
                 </div>
             </div>
         </header>
 
+        <!-- SUMMARY -->
         <section class="section" id="summary">
             <h2>Professional Summary</h2>
-            <p>Associate Professor at Norwegian University of Science and Technology (NTNU) with expertise in system security, penetration testing, and cyber ranges. Experienced Information Security consultant with multiple certifications and a Ph.D. in Cyber Security.</p>
+            <p>Dr. Muhammad Mudassar Yamin is an Associate Professor at the Department of Information Security and Communication Technology, Norwegian University of Science and Technology (NTNU), and a member of the System Security Research Group. His research focuses on system security, penetration testing, security assessment, cyber ranges, and intrusion detection. He has authored over 70 peer-reviewed research articles and presented his work at prominent conferences including DEF CON, Black Hat, SafeComp, and DefCamp. His contributions have been recognized by over 50 Fortune 500 companies and he holds a Ph.D. in Cyber Security from NTNU.</p>
         </section>
 
+        <!-- EXPERIENCE -->
         <section class="section" id="experience">
             <h2>Work Experience</h2>
             <h3>Associate Professor</h3>
-            <p>Department of Information and Communication Technology, NTNU</p>
-            <p>2023 - Present</p>
-            <ul class="list-disc ml-5">
+            <p>Department of Information Security and Communication Technology, NTNU · 2023 – Present</p>
+            <ul class="list-disc">
                 <li>Conduct research in system security, penetration testing, security assessment, and intrusion detection</li>
-                <li>Teach courses in cybersecurity</li>
-                <li>Supervise students</li>
+                <li>Teach courses in cybersecurity (Ethical Hacking, Master's Thesis supervision)</li>
+                <li>Supervise master's and PhD students</li>
+                <li>Active participant in the Norwegian Cyber Range (NCR) project</li>
             </ul>
             <h3>Postdoctoral Researcher</h3>
-            <p>NTNU</p>
-            <p>2022 - 2023</p>
-            <p>Project: "AI-based cyber range scenarios management and training"</p>
+            <p>NTNU · 2022 – 2023</p>
+            <p>Project: <em>"AI-based cyber range scenarios management and training"</em></p>
             <h3>Ph.D. Candidate</h3>
-            <p>NTNU</p>
-            <p>2018 - 2022</p>
-            <p>Thesis: "Modelling and Analyzing Attack-Defense Scenarios for Cyber-Ranges"</p>
+            <p>NTNU · 2018 – 2022</p>
+            <p>Thesis: <em>"Modelling and Analyzing Attack-Defense Scenarios for Cyber-Ranges"</em></p>
             <h3>Information Security Consultant</h3>
             <p>Prior to 2018</p>
-            <ul class="list-disc ml-5">
+            <ul class="list-disc">
                 <li>Served multiple government and private clients</li>
                 <li>Performed security assessment of major financial institutions and critical infrastructure</li>
             </ul>
         </section>
 
+        <!-- EDUCATION -->
         <section class="section" id="education">
             <h2>Education</h2>
-            <ul class="list-disc ml-5">
-                <li><a href="https://github.com/muhammadmudassaryamin/CV/blob/main/papers/Muhammad%20Mudassar%20Yamin.pdf" target="_blank" rel="noopener" aria-label="Ph.D. in Cyber Security, NTNU, 2022">Ph.D. in Cyber Security, NTNU, 2022</a></li>
-            </ul>     
+            <ul class="list-disc">
+                <li>
+                    <a href="https://github.com/muhammadmudassaryamin/CV/blob/main/papers/Muhammad%20Mudassar%20Yamin.pdf" target="_blank" rel="noopener">
+                        Ph.D. in Cyber Security, NTNU, 2022
+                    </a>
+                    &nbsp;— Thesis: <em>Modelling and Analyzing Attack-Defense Scenarios for Cyber-Ranges</em>
+                </li>
+            </ul>
         </section>
 
+        <!-- CERTIFICATIONS -->
         <section class="section" id="certifications">
             <h2>Certifications</h2>
-            <ul class="list-disc ml-5">
+            <ul class="list-disc">
                 <li>OSCE (Offensive Security Certified Expert)</li>
                 <li>OSCP (Offensive Security Certified Professional)</li>
                 <li>LPT-MASTER (Licensed Penetration Tester Master)</li>
@@ -366,170 +399,426 @@
             </ul>
         </section>
 
+        <!-- SKILLS -->
         <section class="section" id="skills">
             <h2>Skills</h2>
-            <ul class="list-disc ml-5">
-                <li>System security</li>
-                <li>Penetration testing</li>
-                <li>Security assessment</li>
-                <li>Intrusion detection</li>
-                <li>Cyber ranges</li>
+            <ul class="list-disc">
+                <li>System security &amp; penetration testing</li>
+                <li>Security assessment &amp; intrusion detection</li>
+                <li>Cyber range design, deployment, and scenario management</li>
+                <li>AI/LLM applications in cybersecurity</li>
+                <li>Open-source intelligence (OSINT)</li>
                 <li>Research and development</li>
-                <li>Teaching and supervision</li>
+                <li>Teaching, supervision, and curriculum development</li>
             </ul>
         </section>
 
-        <section class="section" id="publications">
-            <h2>Selected Publications</h2>
-            <ul class="list-disc ml-5">
-                <li>Yamin, M. M., Katt, B., & Gkioulos, V. (2020). Cyber ranges and security testbeds: Scenarios, functions, tools and architecture. <i>Computers & Security</i>, 88, 101636.</li>
-                <li>Yamin, M. M., Ullah, M., Ullah, H., & Katt, B. (2021). Weaponized AI for cyber attacks. <i>Journal of Information Security and Applications</i>, 57, 102722.</li>
-                <li>Yamin, M. M., Katt, B., & Nowostawski, M. (2021). Serious games as a tool to model attack and defense scenarios for cyber-security exercises. <i>Computers & Security</i>, 110, 102450.</li>
-                <li>Yamin, M. M., & Katt, B. (2022). Modeling and executing cyber security exercise scenarios in cyber ranges. <i>Computers & Security</i>, 116, 102635.</li>
-            </ul>
-        </section>
+        <!-- TEACHING -->
+        <section class="section" id="teaching">
+            <h2>Teaching</h2>
 
-        <section class="section" id="lectures">
-            <h2>Lectures and Presentations</h2>
-            <ul class="list-disc ml-5">
-                <li><a href="https://github.com/muhammadmudassaryamin/CV/blob/main/lectures/defcon32.pdf" target="_blank" rel="noopener" aria-label="DEFCON 32 Presentation">DEFCON 32 (RTV) Combining Uncensored and Censored LLMs for Ransomware Generation</a></li>
-                <li><a href="https://github.com/muhammadmudassaryamin/CV/blob/main/lectures/NCR-MY.pdf" target="_blank" rel="noopener" aria-label="Norwegian Cyber Range Presentation">Norwegian Cyber Range 2023 status</a></li>
-                <li><a href="https://www.slideshare.net/DefCamp/implementation-of-information-security-techniques-on-modern-android-based-kiosk-atmremittance-machines" target="_blank" rel="noopener" aria-label="Defcamp 2018 Presentation">Defcamp 2018 Implementation of information security techniques on modern android based Kiosk ATM/remittance machines (SlideShare)</a></li>
-                <li><a href="https://github.com/muhammadmudassaryamin/CV/blob/main/lectures/Mudassar-slides.pdf" target="_blank" rel="noopener" aria-label="Interpol Thinkathon 2018 Presentation">Interpol Thinkathon 2018 Smart city policing concept</a></li>
-            </ul>
-        </section>
+            <div class="teaching-tabs">
+                <button class="tab-btn active" onclick="showTab('courses', this)">Courses Taught</button>
+                <button class="tab-btn" onclick="showTab('theses', this)">Supervised Master Theses</button>
+            </div>
 
-        <section class="section" id="awards">
-            <h2>Awards</h2>
-            <ul class="list-disc ml-5">
-            <li>Innovation Medal, Interpol for developing smart city policing concepts</li>
-            <li>Academic Excellence Award, Barani Institute of Information Technology</li>
-            <li>Outstanding Reviewer Award, European Workshop on Visual Information Processing (EUVIP 2026)</li>
-            </ul>
-        </section>
+            <!-- Courses Tab -->
+            <div class="tab-panel active" id="tab-courses">
+                <div class="course-card">
+                    <div class="course-code">IIK3100</div>
+                    <div class="course-title">Ethical Hacking and Penetration Testing</div>
+                    <div class="course-meta">
+                        NTNU · Bachelor/Master level · <a href="https://www.ntnu.edu/studies/courses/IIK3100" target="_blank" rel="noopener">Course page ↗</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-code">IMT4905</div>
+                    <div class="course-title">Experience-based Master's Thesis</div>
+                    <div class="course-meta">
+                        NTNU · Master level · <a href="https://www.ntnu.edu/studies/courses/IMT4905" target="_blank" rel="noopener">Course page ↗</a>
+                    </div>
+                </div>
+            </div>
 
-        <section class="section" id="languages">
-            <h2>Languages</h2>
-            <p>English</p>
-        </section>
-
-        <section class="section" id="news">
-            <h2>News</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="news-card">
-                    <a href="https://gemini.no/2024/11/hacking-kan-bli-avgjorende-for-nasjonal-sikkerhet/" target="_blank" rel="noopener" aria-label="Read full article: Hacking could become crucial to national security">
-                        <h3 class="text-lg font-bold text-gray-600">Hacking could become crucial to national security</h3>
-                    </a>
-                    <p class="text-gray-500">Published: November 2024</p>
-                    <iframe src="https://gemini.no/2024/11/hacking-kan-bli-avgjorende-for-nasjonal-sikkerhet/" class="h-64" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview of Hacking could become crucial to national security"></iframe>
+            <!-- Theses Tab -->
+            <div class="tab-panel" id="tab-theses">
+                <div class="nva-link-banner">
+                    📚 Thesis list loaded from
+                    <a href="https://nva.sikt.no/filter?query=Muhammad+Mudassar+Yamin&publisher=D61B0D47-C78A-48DC-8537-3AD87DEF4D5B&topLevelOrganization=194.0.0.0&results=50&category=DegreeMaster&from=0"
+                       target="_blank" rel="noopener">NVA (Norwegian Scientific Index) ↗</a>
                 </div>
-                <div class="news-card">
-                    <a href="https://www.dn.no/innlegg/ki/falske-nyheter/desinformasjon/kunstig-intelligens-jakter-pa-desinformasjon/2-1-1704801" target="_blank" rel="noopener" aria-label="Read full article: Hacking could become crucial to national security">
-                        <h3 class="text-lg font-bold text-gray-600">Artificial intelligence hunts down disinformation</h3>
-                    </a>
-                    <p class="text-gray-500">Published: September 2024</p>
-                    <iframe src="https://www.dn.no/innlegg/ki/falske-nyheter/desinformasjon/kunstig-intelligens-jakter-pa-desinformasjon/2-1-1704801" class="h-64" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview of Hacking could become crucial to national security"></iframe>
-                </div>
-                <div class="news-card">
-                    <a href="https://www.digi.no/artikler/den-ma-tidlig-krokes-som-god-datasnok-skal-bli/537490" target="_blank" rel="noopener" aria-label="Read full article: To become a hacker you should start at an early age">
-                        <h3 class="text-lg font-bold text-gray-600">To become a hacker you should start at an early age</h3>
-                    </a>
-                    <p class="text-gray-500">Published: October 2023</p>
-                    <iframe src="https://www.digi.no/artikler/den-ma-tidlig-krokes-som-god-datasnok-skal-bli/537490" class="h-64" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview of To become a hacker you should start at an early age"></iframe>
-                </div>
-                <div class="news-card">
-                    <a href="https://gemini.no/2023/03/nar-huset-ditt-sladrer-pa-deg/" target="_blank" rel="noopener" aria-label="Read full article: Norwegian research on the police of the future reaches the top of Interpol">
-                        <h3 class="text-lg font-bold text-gray-600">When your house gossips about you</h3>
-                    </a>
-                    <p class="text-gray-500">Published: March 2023</p>
-                    <iframe src="https://gemini.no/2023/03/nar-huset-ditt-sladrer-pa-deg/" class="h-64" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview of Norwegian research on the police of the future reaches the top of Interpol"></iframe>
-                </div>
-                <div class="news-card">
-                    <a href="https://www.politiforum.no/cyberkriminalitet-interpol-jens-petter-sandvik/norsk-forskning-pa-framtidens-politi-til-topps-i-interpol/148614" target="_blank" rel="noopener" aria-label="Read full article: Norwegian research on the police of the future reaches the top of Interpol">
-                        <h3 class="text-lg font-bold text-gray-600">Norwegian research on the police of the future reaches the top of Interpol</h3>
-                    </a>
-                    <p class="text-gray-500">Published: October 2018</p>
-                    <iframe src="https://www.politiforum.no/cyberkriminalitet-interpol-jens-petter-sandvik/norsk-forskning-pa-framtidens-politi-til-topps-i-interpol/148614" class="h-64" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview of Norwegian research on the police of the future reaches the top of Interpol"></iframe>
+                <div id="thesis-container">
+                    <div class="thesis-loader">
+                        <div class="spinner"></div>
+                        <div>Loading supervised theses from NVA...</div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- PUBLICATIONS -->
+        <section class="section" id="publications">
+            <h2>Selected Publications</h2>
+            <p style="font-size:0.88rem;color:#888;margin-bottom:1rem;">
+                Full publication list: <a href="https://nva.sikt.no/research-profile/997884" target="_blank" rel="noopener">NVA Profile</a> ·
+                <a href="https://scholar.google.com/citations?user=Do_xVQMAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            </p>
+
+            <div class="pub-year-group">
+                <div class="pub-year-label">2026</div>
+                <div class="pub-item">Karlsen, S. S.; Yamin, M. M.; Hashmi, E.; Katt, B.; Ullah, M. (2026). <a href="https://doi.org/10.1016/j.jisa.2025.104351" target="_blank" rel="noopener">Securing large language models: A quantitative assurance framework approach.</a> <em>Journal of Information Security and Applications.</em></div>
+            </div>
+
+            <div class="pub-year-group">
+                <div class="pub-year-label">2025</div>
+                <div class="pub-item">Palumickas, M.; Yamin, M. M.; Katt, B.; Lal, C. (2025). <a href="https://doi.org/10.1007/s10207-025-01179-w" target="_blank" rel="noopener">Evaluating ASCERT: generative AI for cyber-range scenario generation.</a> <em>International Journal of Information Security.</em></div>
+                <div class="pub-item">Sadlek, L.; Yamin, M. M.; Čeleda, P.; Katt, B. (2025). <a href="https://doi.org/10.1016/j.jisa.2024.103956" target="_blank" rel="noopener">Severity-based triage of cybersecurity incidents using kill chain attack graphs.</a> <em>Journal of Information Security and Applications.</em></div>
+            </div>
+
+            <div class="pub-year-group">
+                <div class="pub-year-label">2024</div>
+                <div class="pub-item">Yamin, M. M.; Hashmi, E.; Ullah, M.; Katt, B. (2024). <a href="https://doi.org/10.1109/ACCESS.2024.3468914" target="_blank" rel="noopener">Applications of LLMs for Generating Cyber Security Exercise Scenarios.</a> <em>IEEE Access.</em></div>
+                <div class="pub-item">Zafar, A.; Yamin, M. M.; Katt, B.; Torseth, E. (2024). <a href="https://doi.org/10.1016/j.eswa.2024.124436" target="_blank" rel="noopener">All flags are not created equal: A deep look into CTF Scoring Algorithms.</a> <em>Expert Systems With Applications.</em></div>
+                <div class="pub-item">Hashmi, E.; Yamin, M. M.; Yildirim-Yayilgan, S. (2024). <a href="https://doi.org/10.1007/s43681-024-00529-z" target="_blank" rel="noopener">Securing tomorrow: a comprehensive survey on the synergy of Artificial Intelligence and information security.</a> <em>AI and Ethics.</em></div>
+            </div>
+
+            <div class="pub-year-group">
+                <div class="pub-year-label">2023</div>
+                <div class="pub-item">Balto, K. E. E.; Yamin, M. M.; Shalaginov, A.; Katt, B. (2023). <a href="https://doi.org/10.3390/s23063071" target="_blank" rel="noopener">Hybrid IoT Cyber Range.</a> <em>Sensors.</em></div>
+                <div class="pub-item">Shukla, A.; Katt, B.; Yamin, M. M. (2023). <a href="https://doi.org/10.1007/s10207-023-00709-8" target="_blank" rel="noopener">A quantitative framework for security assurance evaluation and selection of cloud services.</a> <em>International Journal of Information Security.</em></div>
+                <div class="pub-item">Færøy, F. L.; Yamin, M. M.; Shukla, A.; Katt, B. (2023). <a href="https://doi.org/10.3390/s23020733" target="_blank" rel="noopener">Automatic Verification and Execution of Cyber Attack on IoT Devices.</a> <em>Sensors.</em></div>
+            </div>
+
+            <div class="pub-year-group">
+                <div class="pub-year-label">2022 and earlier (selected)</div>
+                <div class="pub-item">Yamin, M. M.; Katt, B. (2022). <a href="https://doi.org/10.1016/j.cose.2022.102635" target="_blank" rel="noopener">Modeling and executing cyber security exercise scenarios in cyber ranges.</a> <em>Computers &amp; Security</em>, 116, 102635.</div>
+                <div class="pub-item">Yamin, M. M.; Katt, B. (2022). <a href="https://doi.org/10.1016/j.cose.2022.102892" target="_blank" rel="noopener">Use of cyber attack and defense agents in cyber ranges: A case study.</a> <em>Computers &amp; Security.</em></div>
+                <div class="pub-item">Yamin, M. M.; Ullah, M.; Ullah, H.; Katt, B. (2021). <a href="https://doi.org/10.1016/j.jisa.2020.102722" target="_blank" rel="noopener">Weaponized AI for cyber attacks.</a> <em>Journal of Information Security and Applications</em>, 57, 102722.</div>
+                <div class="pub-item">Yamin, M. M.; Katt, B.; Nowostawski, M. (2021). <a href="https://doi.org/10.1016/j.cose.2021.102450" target="_blank" rel="noopener">Serious games as a tool to model attack and defense scenarios for cyber-security exercises.</a> <em>Computers &amp; Security</em>, 110, 102450.</div>
+                <div class="pub-item">Yamin, M. M.; Katt, B.; Gkioulos, V. (2020). <a href="https://doi.org/10.1016/j.cose.2019.101636" target="_blank" rel="noopener">Cyber ranges and security testbeds: Scenarios, functions, tools and architecture.</a> <em>Computers &amp; Security</em>, 88, 101636.</div>
+            </div>
+        </section>
+
+        <!-- LECTURES -->
+        <section class="section" id="lectures">
+            <h2>Lectures and Presentations</h2>
+            <ul class="list-disc">
+                <li><a href="https://github.com/muhammadmudassaryamin/CV/blob/main/lectures/defcon32.pdf" target="_blank" rel="noopener">DEF CON 32 (RTV) – Combining Uncensored and Censored LLMs for Ransomware Generation</a> · Las Vegas, 2024</li>
+                <li><a href="https://github.com/muhammadmudassaryamin/CV/blob/main/lectures/NCR-MY.pdf" target="_blank" rel="noopener">Norwegian Cyber Range 2023 Status</a></li>
+                <li><a href="https://www.slideshare.net/DefCamp/implementation-of-information-security-techniques-on-modern-android-based-kiosk-atmremittance-machines" target="_blank" rel="noopener">DefCamp 2018 – Implementation of information security techniques on modern android based Kiosk ATM/remittance machines</a></li>
+                <li><a href="https://github.com/muhammadmudassaryamin/CV/blob/main/lectures/Mudassar-slides.pdf" target="_blank" rel="noopener">Interpol Thinkathon 2018 – Smart city policing concept</a></li>
+            </ul>
+        </section>
+
+        <!-- AWARDS -->
+        <section class="section" id="awards">
+            <h2>Awards &amp; Recognition</h2>
+            <ul class="list-disc">
+                <li><strong>Innovation Medal</strong>, INTERPOL – for developing smart city policing concepts</li>
+                <li><strong>Academic Excellence Award</strong>, Barani Institute of Information Technology</li>
+                <li><strong>Outstanding Reviewer Award</strong>, European Workshop on Visual Information Processing (EUVIP 2026)</li>
+                <li><strong>Appreciation Letter</strong>, French Military – for contributions to cybersecurity</li>
+                <li><strong>Appreciation Letter</strong>, Pakistan Counter Terrorism Department – for contributions to cybersecurity</li>
+                <li><strong>Recognized</strong> by over 50 Fortune 500 companies for cybersecurity contributions</li>
+            </ul>
+        </section>
+
+        <!-- LANGUAGES -->
+        <section class="section" id="languages">
+            <h2>Languages</h2>
+            <p>English (Fluent) &nbsp;·&nbsp; Norwegian (Working proficiency) &nbsp;·&nbsp; Urdu/Punjabi (Native)</p>
+        </section>
+
+        <!-- NEWS -->
+        <section class="section" id="news">
+            <h2>News</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-date">November 2024</div>
+                    <a href="https://gemini.no/2024/11/hacking-kan-bli-avgjorende-for-nasjonal-sikkerhet/" target="_blank" rel="noopener">
+                        <div class="news-title">Hacking could become crucial to national security</div>
+                    </a>
+                    <iframe src="https://gemini.no/2024/11/hacking-kan-bli-avgjorende-for-nasjonal-sikkerhet/" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview"></iframe>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">September 2024</div>
+                    <a href="https://www.dn.no/innlegg/ki/falske-nyheter/desinformasjon/kunstig-intelligens-jakter-pa-desinformasjon/2-1-1704801" target="_blank" rel="noopener">
+                        <div class="news-title">Artificial intelligence hunts down disinformation</div>
+                    </a>
+                    <iframe src="https://www.dn.no/innlegg/ki/falske-nyheter/desinformasjon/kunstig-intelligens-jakter-pa-desinformasjon/2-1-1704801" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview"></iframe>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">October 2023</div>
+                    <a href="https://www.digi.no/artikler/den-ma-tidlig-krokes-som-god-datasnok-skal-bli/537490" target="_blank" rel="noopener">
+                        <div class="news-title">To become a hacker you should start at an early age</div>
+                    </a>
+                    <iframe src="https://www.digi.no/artikler/den-ma-tidlig-krokes-som-god-datasnok-skal-bli/537490" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview"></iframe>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">March 2023</div>
+                    <a href="https://gemini.no/2023/03/nar-huset-ditt-sladrer-pa-deg/" target="_blank" rel="noopener">
+                        <div class="news-title">When your house gossips about you</div>
+                    </a>
+                    <iframe src="https://gemini.no/2023/03/nar-huset-ditt-sladrer-pa-deg/" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview"></iframe>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">October 2018</div>
+                    <a href="https://www.politiforum.no/cyberkriminalitet-interpol-jens-petter-sandvik/norsk-forskning-pa-framtidens-politi-til-topps-i-interpol/148614" target="_blank" rel="noopener">
+                        <div class="news-title">Norwegian research on the police of the future reaches the top of Interpol</div>
+                    </a>
+                    <iframe src="https://www.politiforum.no/cyberkriminalitet-interpol-jens-petter-sandvik/norsk-forskning-pa-framtidens-politi-til-topps-i-interpol/148614" sandbox="allow-scripts allow-same-origin" loading="lazy" aria-label="Preview"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOBBIES -->
         <section class="section" id="hobbies">
             <h2>Hobbies and Travel</h2>
-            <div id="instagram-feed" class="text-center text-gray-500" aria-label="Instagram Feed">
+            <div id="instagram-feed" class="text-center" aria-label="Instagram Feed">
                 <script src="https://static.elfsight.com/platform/platform.js" async data-lazy></script>
                 <div class="elfsight-app-3092489e-d6bc-4677-8d08-dc3845bd6433" data-elfsight-app-lazy></div>
             </div>
         </section>
-    </div>
-    <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-            return cell !== '' && cell != null;
+
+    </div><!-- /content -->
+
+    <script>
+        /* ── Tab switcher ── */
+        function showTab(name, btn) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            btn.classList.add('active');
+            if (name === 'theses' && !window._thesesLoaded) loadTheses();
         }
-        function loadFileData(filename) {
-            if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-                try {
-                    var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                    var firstSheetName = workbook.SheetNames[0];
-                    var worksheet = workbook.Sheets[firstSheetName];
-                    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                    var filteredData = jsonData.filter(row => row.some(filledCell));
-                    var headerRowIndex = filteredData.findIndex((row, index) =>
-                        row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                    );
-                    if (headerRowIndex === -1 || headerRowIndex > 25) {
-                        headerRowIndex = 0;
+
+        /* ── NVA Thesis Loader ── */
+        async function loadTheses() {
+            window._thesesLoaded = true;
+            const container = document.getElementById('thesis-container');
+
+            // Try NVA API — public, no auth required
+            // Person ID 997884 from https://nva.sikt.no/research-profile/997884
+            const personId = '997884';
+            const apiUrl = `https://api.nva.unit.no/search/resources?contributor=https%3A%2F%2Fapi.nva.unit.no%2Fcristin%2Fperson%2F${personId}&category=DegreeMaster&size=50&sort=date&sortOrder=desc`;
+
+            try {
+                const res = await fetch(apiUrl, { headers: { 'Accept': 'application/json' } });
+                if (!res.ok) throw new Error('API ' + res.status);
+                const data = await res.json();
+                const hits = data.hits || [];
+
+                if (hits.length === 0) {
+                    showFallback(container);
+                    return;
+                }
+
+                renderTheses(container, hits);
+            } catch (e) {
+                console.warn('NVA API failed:', e);
+                showFallback(container);
+            }
+        }
+
+        function renderTheses(container, hits) {
+            const ul = document.createElement('ul');
+            ul.className = 'thesis-list';
+
+            hits.forEach(hit => {
+                const title = hit.mainTitle || (hit.title && hit.title.nb) || (hit.title && hit.title.en) || 'Untitled';
+                const year = hit.publicationDate?.year || (hit.date && hit.date.year) || '';
+                const doiLink = hit.doi ? `https://doi.org/${hit.doi}` : (hit.id || '#');
+
+                // Figure out role (main/co supervisor) based on contributor list
+                let role = 'Supervisor';
+                if (hit.contributors && Array.isArray(hit.contributors)) {
+                    const myContrib = hit.contributors.find(c => {
+                        const id = c.identity?.id || '';
+                        return id.includes('997884');
+                    });
+                    if (myContrib) {
+                        const roleName = (myContrib.role?.type || '').toLowerCase();
+                        if (roleName.includes('co') || roleName.includes('second')) {
+                            role = 'Co-supervisor';
+                        }
                     }
-                    var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
-                    csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                    return csv;
-                } catch (e) {
-                    console.error(e);
-                    return "";
                 }
-            }
-            return gk_fileData[filename] || "";
+
+                const authors = (hit.contributors || [])
+                    .filter(c => {
+                        const r = (c.role?.type || '').toLowerCase();
+                        return r === 'creator' || r === 'author' || r === '';
+                    })
+                    .slice(0, 3)
+                    .map(c => c.identity?.name || '')
+                    .filter(Boolean)
+                    .join('; ');
+
+                const li = document.createElement('li');
+                li.className = 'thesis-item';
+                li.innerHTML = `
+                    <div class="thesis-title">
+                        <a href="${doiLink}" target="_blank" rel="noopener">${escHtml(title)}</a>
+                    </div>
+                    <div class="thesis-meta">
+                        ${authors ? `<span>👤 ${escHtml(authors)}</span>` : ''}
+                        ${year ? `<span>📅 ${year}</span>` : ''}
+                        <span class="thesis-role ${role === 'Co-supervisor' ? 'role-co' : 'role-main'}">${role}</span>
+                    </div>`;
+                ul.appendChild(li);
+            });
+
+            container.innerHTML = `<p style="font-size:0.85rem;color:#888;margin-bottom:0.75rem;">${hits.length} thesis/theses found</p>`;
+            container.appendChild(ul);
         }
 
-        // Smooth scrolling for sidebar links with debounce
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
+        function showFallback(container) {
+            container.innerHTML = `
+                <div style="padding:1rem;background:var(--bg-light);border-radius:8px;border:1px solid #E2E8F0;">
+                    <p style="margin:0 0 0.5rem;font-weight:600;">Supervised theses (partial list)</p>
+                    <ul class="thesis-list">
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                UI0T-FMT: Universal format for collection and aggregation of data from smart devices
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Mats Didriksen Seljeseth</span>
+            <span>📅 2020</span>
+            <span class="thesis-role role-co">Co-supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                Hybrid IoT Cyber Range
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Karl Edward Balto</span>
+            <span>📅 2022</span>
+            <span class="thesis-role role-co">Co-supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/3079061" target="_blank" rel="noopener">
+                Generating Historical Network Logs for Cyber Range Exercises
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Christian Simoes Isnes</span>
+            <span>📅 2023</span>
+            <span class="thesis-role role-co">Supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                Cyber Crisis Chess Board for Strategic and Tactical Level of Organizations
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Sivert Lundli</span>
+            <span>📅 2023</span>
+            <span class="thesis-role role-co">Supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                Multi-site Federation For Cyber Range
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Simranjeet Dua</span>
+            <span>📅 2023</span>
+            <span class="thesis-role role-co">Co-supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                ChatRange: Designing Cyber Security Exercise Scenarios using Autonomous AI Agents and Artificial Intelligence
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Stian Madsen Storebo</span>
+            <span>📅 2024</span>
+            <span class="thesis-role role-co">Supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                A Quantitative Security Assurance Framework for Large Language Model Applications
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Sander Stamnes Karlsen</span>
+            <span>📅 2024</span>
+            <span class="thesis-role role-co">Co-supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                Sentinel Droid: A Machine Learning model to classify Android Malware, and possible LLM use cases
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Ranvir Singh</span>
+            <span>📅 2024</span>
+            <span class="thesis-role role-co">Supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                Simulating Real-World Cyber Attacks with Generative AI: Assessing ASCERT's Scenario Generation
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Martynas Palumickas</span>
+            <span>📅 2025</span>
+            <span class="thesis-role role-co">Supervisor</span>
+        </div>
+    </li>
+
+    <li class="thesis-item">
+        <div class="thesis-title">
+            <a href="#" target="_blank" rel="noopener">
+                Automating Cybersecurity Training: A Study on Local LLM-Driven Scenario Generation
+            </a>
+        </div>
+        <div class="thesis-meta">
+            <span>👤 Martin Plesner Home</span>
+            <span>📅 2025</span>
+            <span class="thesis-role role-co">Supervisor</span>
+        </div>
+    </li>
+                    </ul>
+                    <p style="font-size:0.82rem;color:#888;margin-top:0.75rem;">
+                        For the full list, visit your
+                        <a href="https://nva.sikt.no/filter?query=Muhammad+Mudassar+Yamin&publisher=D61B0D47-C78A-48DC-8537-3AD87DEF4D5B&topLevelOrganization=194.0.0.0&results=50&category=DegreeMaster&from=0" target="_blank" rel="noopener">NVA profile ↗</a>
+                    </p>
+                </div>`;
         }
 
-        const scrollToSection = debounce((e) => {
-            e.preventDefault();
-            const targetId = e.target.getAttribute('href')?.substring(1);
-            if (!targetId) return;
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                const offset = 20;
-                window.scrollTo({
-                    top: targetElement.getBoundingClientRect().top + window.pageYOffset - offset,
-                    behavior: 'smooth'
-                });
-                if (window.innerWidth <= 768) {
-                    toggleSidebar();
-                }
-            }
-        }, 100);
+        function escHtml(str) {
+            return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
 
-        document.querySelectorAll('.sidebar a').forEach(anchor => {
-            anchor.removeEventListener('click', scrollToSection);
-            anchor.addEventListener('click', scrollToSection);
-        });
-
-        // Toggle sidebar for mobile
+        /* ── Sidebar ── */
         function toggleSidebar() {
             const sidebar = document.querySelector('.sidebar');
             const hamburger = document.querySelector('.hamburger');
@@ -538,7 +827,6 @@
             hamburger.classList.toggle('active');
         }
 
-        // Ensure sidebar visibility on resize
         window.addEventListener('resize', () => {
             const sidebar = document.querySelector('.sidebar');
             const hamburger = document.querySelector('.hamburger');
@@ -552,37 +840,37 @@
             }
         });
 
-        // Initial sidebar state
-        document.addEventListener('DOMContentLoaded', () => {
-            const sidebar = document.querySelector('.sidebar');
-            if (window.innerWidth <= 768) {
-                sidebar.classList.add('hidden');
-            } else {
-                sidebar.classList.remove('hidden');
-            }
+        /* ── Smooth scroll ── */
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const el = document.getElementById(targetId);
+                if (el) {
+                    window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 20, behavior: 'smooth' });
+                    if (window.innerWidth <= 768) toggleSidebar();
+                }
+            });
         });
 
-        // Theme toggle
+        /* ── Theme ── */
         function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('theme', currentTheme);
+            const cur = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', cur);
+            localStorage.setItem('theme', cur);
         }
 
-        // Load saved theme
+        /* ── Init ── */
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
+            if (window.innerWidth <= 768) document.querySelector('.sidebar').classList.add('hidden');
         });
 
-        // Keyboard navigation for accessibility
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && window.innerWidth <= 768) {
-                const sidebar = document.querySelector('.sidebar');
-                if (!sidebar.classList.contains('hidden')) {
-                    toggleSidebar();
-                }
+                const s = document.querySelector('.sidebar');
+                if (!s.classList.contains('hidden')) toggleSidebar();
             }
         });
     </script>
